@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="/employee">My Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/customers">Customers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/add/customer">Draft</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/employee/statistics/{{ session['uid'] }}">My Statistics</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1> Welcome back, {{ session['username'] }}</h1>
+
+{% endblock %}

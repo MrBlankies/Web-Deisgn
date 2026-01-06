@@ -1,0 +1,80 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <style>
+        body{
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.13)), url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29sb3JmdWx8ZW58MHx8MHx8fDA%3D&w=1000&q=80");
+        }
+        h1 {
+            font-size: 36px;
+            color: rgb(126, 156, 156);
+            font-weight: bold;
+            margin-top: 70px;
+            margin-bottom: -10px;
+        }
+        h2 {
+            font-size: 28px;
+            padding-bottom: 5px;
+            padding-top: 18px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            padding: -5px;
+            margin: 0;
+        }
+        .btn-primary {
+            background-color: #5a989c;
+            border-color: #ccc;
+            width: 120px;
+            height: 50px;
+            mix-blend-mode: multiply;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+        }
+        .btn-primary:hover {
+            background-color: #f8f8f8;
+            border-color: #ccc;
+            color: #000000;
+        }
+        .user-card {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .user-info {
+            flex: 1;
+        }
+        .user-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <h1>Users</h1>
+
+    <div>
+        {% for user in users %}
+            <div class="user-card">
+                <div class="user-info">
+                    <h2>Username: {{ user ['username']}}</h2>
+                    <p>User role: {{ user ['role']}}</p>
+                    <p>Status: {{ user ['is_active']}}</p>
+                </div>
+                <div class="user-buttons">
+                    {% if user ['role']!='admin' %}
+                        <a href="/edit/user/{{user['uid']}}"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a href="/delete/user/{{user['uid']}}"><button type="button" class="btn btn-primary">Delete</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+
+    <li class="nav-item">
+        <a class="nav-link" href="/admin">My Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/disabled/users">Disabled</a>
+    </li>
+
+{% endblock %}
+{% block content %}
+    <h1> Welcome back, {{ session['username'] }}</h1>
+
+{% endblock %}

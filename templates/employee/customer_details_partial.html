@@ -1,0 +1,29 @@
+<h2>Customer Details</h2>
+<p><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
+<p><strong>Email:</strong> {{ customer.email }}</p>
+<p><strong>Phone:</strong> {{ customer.phone }}</p>
+<p><strong>Address:</strong> {{ customer.address }}</p>
+<p><strong>Notes:</strong> {{ customer.notes }}</p>
+<hr>
+
+<h2>Recent Interactions</h2>
+
+{% if interactions|length == 0 %}
+    <p>No interactions recorded.</p>
+{% else %}
+    {% for interaction in interactions[:2] %}
+    <div class="card mb-2">
+        <p><strong>Type:</strong> {{ interaction.type }}</p>
+        <p><strong>Date:</strong> {{ interaction.interaction_date.replace('T',' ') }}</p>
+        <p><strong>Subject:</strong> {{ interaction.subject }}</p>
+        <p><strong>Notes:</strong> {{ interaction.notes }}</p>
+        <p><strong>Customer Response:</strong> {{ interaction.customer_response }}</p>
+    </div>
+{% endfor %}
+
+    {% if interactions|length > 2 %}
+    <p style="font-style: italic; color: #777;">
+        …and {{ interactions|length - 2 }} more interactions. Click "View Full Page" for all.
+    </p>
+    {% endif %}
+{% endif %}

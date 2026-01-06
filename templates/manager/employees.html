@@ -1,0 +1,55 @@
+{% extends 'manager/base_manager.html' %}
+
+{% block title %}Employees{% endblock %}
+
+{% block content %}
+    <style>
+        .card {
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            color: rgb(126, 156, 156);
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+            margin-bottom: -5px;
+        }
+    </style>
+
+    <h1>Employees</h1>
+
+    <div class="container">
+        {% if users %}
+            {% for user in users %}
+                {% if user['role'] == 'employee' %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Username: {{ user ['username']}}</h2>
+                            <p>Status: {{ user ['is_active']}}</p>
+                            <p>Customers: {{ user ['customer_count']}}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="card">
+                <p class="text-center">No employees found.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'employee/base_employee.html' %}
+
+{% block title %} Statistics {% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: rgb(126, 156, 156);
+        font-weight: bold;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: -20px;
+    }
+    h2 {
+        font-size: 22px;
+        color: #555555;
+        margin-bottom: 20px;
+    }
+    .card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    p {
+        margin: 5px 0;
+        color: #555555;
+    }
+    .badge {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+</style>
+
+<h1>Employee Statistics</h1>
+<h2>Overview of your performance metrics.</h2>
+
+<div class="row">
+    <div class="col-sm-3 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Customers Added</h5> 
+                <span class="badge text-bg-success">{{ customers }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contacts past 30 days</h5> <span class="badge text-bg-success">{{ contacts_30 }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contacts past 7 days</h5> <span class="badge text-bg-success">{{ contacts_7 }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contacts past 1 day</h5> <span class="badge text-bg-success">{{ contacts_1 }}</span>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

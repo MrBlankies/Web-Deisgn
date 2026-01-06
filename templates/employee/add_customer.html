@@ -1,0 +1,98 @@
+{% extends 'employee/base_employee.html' %}
+
+{% block title %}Draft{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    form {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 40px auto;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: rgb(126, 156, 156);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 76%;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<h1>Add Customer</h1>
+<form method="POST" action="{{ url_for('add_customer') }}">
+    <div>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+    </div>
+    <div>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+    </div>
+    <div>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone">
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address">
+    </div>
+    <div>
+        <button type="submit">Add Customer</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'employee/base_employee.html' %}
+
+{% block title %}customers{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .customers-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 600px;
+        margin: 40px auto;
+        margin-left: -200px;
+    }
+
+    .customer-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        position: relative;
+    }
+
+    .card {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #fff;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: rgb(126, 156, 156);
+        font-weight: bold;
+        text-align: left;
+        margin-left: -200px;
+        margin-top: 40px;
+        margin-bottom: -30px;
+    }
+
+    h2 {
+        font-size: 21px;
+        color: #555555;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin: 3px 0;
+        color: #555555;
+        margin-top: -10px;
+    }
+
+    #msg {
+        font-size: 24px;
+        color: #666666;
+        margin-left: -200px;
+        margin-bottom: -30px;
+    }
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    .button:hover {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #000000;
+        margin-bottom: -2px;
+    }
+    .customer-button {
+        display: flex;
+        justify-content: flex-end; 
+        align-items: center; 
+        width: 100%; 
+        position: absolute;
+        bottom: 28px;
+        right: 20px;
+    }
+    #customer-details-panel {
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+</style>
+
+<script>
+function showDetails(cid) {
+    const panel = document.getElementById('customer-details-panel');
+    const panelContent = document.getElementById('panel-content');
+    const fullPageBtn = document.getElementById('full-page-btn');
+
+    panel.style.display = 'block'; 
+    fullPageBtn.href = `/customer/${cid}`;
+    fetch(`/customer/${cid}?partial=1`)
+        .then(response => response.text())
+        .then(html => {
+            panelContent.innerHTML = html;
+        });
+}
+</script>
+
+
+<h1>Customer List</h1>
+<p id="msg">Manage your customer interactions and follow ups</p>
+
+
+<div class="customers-container" style="display: flex; gap: 20px;">
+    <!-- Left Customer List -->
+    <div class="customers-column" style="flex: 1;">
+        {% for customer in customers %}
+        <div class="customer-card">
+            <h2>{{ customer.first_name }} {{ customer.last_name }}</h2>
+            <p><strong>Status:</strong> {% if customer.interactions and customer.interactions[0].customer_response %} follow-up {% elif customer.interactions %} contacted {% else %} pending {% endif %}</p>
+            <div class="customer-button">
+            <button class="button" onclick="showDetails('{{ customer.cid }}')">View Details</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Right Customer Details -->
+    <div id="customer-details-panel" style="
+        flex: 1; 
+        background-color: #fff; 
+        border-radius: 10px; 
+        padding: 20px; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        display: none; 
+        max-height: 80vh; 
+        height: 8;
+        overflow-y: auto;
+        margin: 40px auto;
+    ">
+        <div id="panel-content"></div>
+        <a id="full-page-btn" href="customer_details.html" class="button" style="margin-top: 15px;">View Full Page</a>
+  
+    </div>
+</div>
+
+
+{% endblock %}

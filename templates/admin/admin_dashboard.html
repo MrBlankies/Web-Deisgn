@@ -1,0 +1,60 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+
+<style>
+
+  body {
+      background-color: #f0f0f0;
+      text-align: center;
+  }
+
+  .btn-primary {
+      background-color: #080808;
+      border-color: #ccc;
+  }
+  .btn-primary:hover {
+      background-color: #f8f8f8;
+      border-color: #ccc;
+      color: #000000;
+  }
+  h1 {
+      font-size: 38px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: -30px;
+  }
+  h2 {
+      font-size: 21px;
+      color: #555555;
+      margin-bottom: 20px;
+  }  
+ 
+</style>
+
+{{ super() }}
+<h2>Here you can manage all users.</h2>
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">User List</h5>
+        <p class="card-text">Select here to view and all edit users</p>
+        <a href="/users" class="btn btn-primary">View Users</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Add User</h5>
+        <p class="card-text">Select here to add new users</p>
+        <a href="/register" class="btn btn-primary">Create User</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'employee/customers.html' %}
+
+{% block title %}Customer Details{% endblock %}
+
+{% block content %}
+
+<style>
+    .card {
+        height: auto;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 10px;
+        width: 120px;
+        text-align: center;
+    }
+
+    .button:hover {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #000000;
+        margin-top: -2px;
+    }
+
+    .btn-secondary {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 10px;
+        width: 122px;
+        margin-top: 15px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #000000;
+    }
+
+    #text {
+        font-style: italic;
+        color: #777777;
+        margin: auto;
+    }
+
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2>Customer Details</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
+            <p><strong>Email:</strong> {{ customer.email }}</p>
+            <p><strong>Phone:</strong> {{ customer.phone }}</p>
+            <p><strong>Address:</strong> {{ customer.address }}</p>
+            <p><strong>Notes:</strong> {{ customer.notes }}</p>
+        </div>
+        <a href="/edit/customer/{{ customer['cid'] }}" class="button">Edit Customer</a>
+    </div>
+
+    <div class="d-flex align-items-center mt-4 position-relative">
+    <h2 class="mx-auto mb-0 text-center">Interactions</h2>
+    <a href="/add/interaction/{{ customer['cid'] }}" class="btn-secondary position-absolute end-0">Add Interaction</a>
+</div>
+</div>
+
+    {% if interactions %}
+    {% for interaction in interactions %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <p><strong>Type:</strong> {{ interaction.type }}</p>
+            <p><strong>Date:</strong> {{ interaction.interaction_date.replace('T', ' ') }}</p>
+            <p><strong>Subject:</strong> {{ interaction.subject }}</p>
+            <p><strong>Notes:</strong> {{ interaction.notes }}</p>
+            <p><strong>Customer Response:</strong> {{ interaction.customer_response }}</p>
+        </div>
+            <a href="/edit/interaction/{{ interaction['iid'] }}" class="button">Edit Interaction</a>
+    </div>
+    {% endfor %}
+    {% endif %} 
+</div>
+{% endblock %}

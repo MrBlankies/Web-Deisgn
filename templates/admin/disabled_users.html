@@ -1,0 +1,61 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Disabled Users{% endblock %}
+
+{% block content %}
+    <style>
+        h1 {
+            font-size: 36px;
+            color: rgb(126, 156, 156);
+            font-weight: bold;
+            margin-top: 70px;
+            margin-bottom: -10px;
+        }
+        h2 {
+            font-size: 28px;
+            padding-bottom: 5px;
+            padding-top: 18px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            padding: -5px;
+            margin: 0;
+        }
+        .card {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .users-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .user-card {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+
+    <h1>Disabled Users</h1>
+
+    <div class="users-container">
+        {% for user in users %}
+            {% if user ['is_active']=='disabled' %}
+                <div class="card">
+                    <div class="card-body">
+                         <h2>Username: {{ user ['username']}}</h2>
+                        <p>Status: {{ user ['is_active']}}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

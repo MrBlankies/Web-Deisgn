@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks {% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+    .navbar {
+        background-color: rgb(56, 55, 55) !important;
+        color: white !important;
+        width: 147.44%;
+        margin-left: -25%;
+        margin-bottom: 20px;
+    }
+
+    .navbar a.nav-link, .navbar, .navbar .btn {
+        color: white !important;
+    }
+    .navbar-brand {
+        color: #ffffff !important;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .navbar a.nav-link:hover, .navbar .navbar-brand:hover, .navbar .btn:hover {
+        color: #ccc !important; 
+    }
+    .container > * {
+        padding: 20px;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29sb3JmdWx8ZW58MHx8MHx8fDA%3D&w=1000&q=80");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .btn-outline-danger {
+        border-color: rgb(74, 148, 177);
+    }
+    .btn-outline-danger:hover {
+        background-color: rgb(20, 69, 88);
+        color: white;
+        border-color: rgb(20, 69, 88);
+        font-size: bold;
+    }
+    
+</style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid" style="margin-left: 30px;">
+                <a class="navbar-brand" href="#">CRM</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% block menu %}{% endblock %}
+                </ul>
+                 <a href="{{ url_for('logout') }}" class="btn btn-outline-danger" style="margin-right: 30px;">Logout</a>
+                </div>
+            </div>
+        </nav>
+    
+    
+
+        {% block content %}{% endblock %}
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

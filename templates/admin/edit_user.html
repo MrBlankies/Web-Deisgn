@@ -1,0 +1,81 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+
+
+<style>
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        max-width: 550px;
+        max-height: 450px;
+        height: 350px;
+        width: 65%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 25px;
+        color: rgb(126, 156, 156);
+        margin-bottom: 10px;
+        margin-top: 70px;
+        font-weight: bold;
+        font-size: 35px;
+    }
+
+    .role {
+        width: 70%;
+        height: 20%;
+        margin: 10px;
+        border-radius: 5px;
+    }
+
+    .name{
+        width: 70%;
+        height: 20%;
+        margin-top: 10px;   
+        border-radius: 5px;     
+    }
+
+    .status {
+        width: 70%;
+        height: 20%; 
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        margin-top: 7px;
+        width: 27%;
+        font-size: large;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+</style>
+
+<h1>Edit User</h1>
+
+<form method="post">
+
+    <h2>{{ user ['username']}}</h2>
+
+    <input type="text" name="username" class="name" value="{{ user['username'] }}" /> <br>
+    <select id="role" name="role" class="role">
+        <option value="employee" {% if user.role == "employee" %}selected{% endif %}>Employee</option>
+        <option value="manager" {% if user.role == "manager" %}selected{% endif %}>Manager</option>
+    </select><br>
+    <select id="status" name="status" class="status">
+        <option value="active" {% if user.is_active == "active" %}selected{% endif %}>Active</option>
+        <option value="disabled" {% if user.is_active == "disabled" %}selected{% endif %}>Disabled</option>
+    </select><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

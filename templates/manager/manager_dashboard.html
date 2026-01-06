@@ -1,0 +1,50 @@
+{% extends 'manager/base_manager.html' %}
+
+{% block title %}Manager{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f0f0;
+        text-align: center;
+    }
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: -30px;
+    }
+    h2 {
+        font-size: 21px;
+        color: #555555;
+        margin-bottom: 20px;
+    }
+</style>
+
+{{ super() }}
+<h2>Here you can view your top employees.</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Active</th>
+            <th>Created At</th>
+            <th>Customers Managed</th>
+            <th>Contacts in Last 30 Days</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in top_employees %}
+        <tr>
+            <td>{{ employee.username }}</td>
+            <td>{{ 'Yes' if employee.is_active == 'active' else 'No' }}</td>
+            <td>{{ employee.created_at }}</td>
+            <td>{{ employee.customer_count }}</td>
+            <td>{{ employee.contacts_30 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

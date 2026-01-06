@@ -1,0 +1,119 @@
+{% extends 'employee/customers.html' %}
+
+{% block title %}Edit Customer{% endblock %}
+
+{% block content %}
+<style>
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        max-width: 700px;
+        max-height: 450px;
+        height: 370px;
+        width: 100%;
+        margin-top: 40px;
+        margin: auto;
+    }   
+    
+    h1 {
+        text-align: center;
+        font-size: 25px;
+        color: rgb(126, 156, 156);
+        margin-bottom: 10px;
+        margin-top: 70px;
+        font-weight: bold;
+        font-size: 35px;
+    }
+
+    .card-body {
+        margin: 10px;
+        text-align: center;
+    }
+
+    .form-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .form-row label {
+        width: 100px;   
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .form-row input,
+    .form-row textarea {
+        flex: 1;
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 10px;
+        width: 120px;
+        font-size: 18px;
+    }
+    .btn-primary:hover {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #000000;
+    }
+</style>
+
+
+    <h1>Edit User</h1>
+
+<form method="post">
+    <div class="card-body">
+
+        <div class="form-row">
+            <label for="name"><strong>Name:</strong></label>
+            <input type="text" name="first_name" value="{{ customer.first_name }}" required>
+            <input type="text" name="last_name" value="{{ customer.last_name }}" required>
+
+        </div>
+
+        <div class="form-row">
+            <label for="email"><strong>Email:</strong></label>
+            <input type="email" id="email" name="email"
+                    value="{{ customer.email }}" required>
+        </div>
+
+        <div class="form-row">
+            <label for="phone"><strong>Phone:</strong></label>
+            <input type="text" id="phone" name="phone"
+                   value="{{ customer.phone }}">
+        </div>
+
+        <div class="form-row">
+            <label for="address"><strong>Address:</strong></label>
+            <input type="text" id="address" name="address"
+                   value="{{ customer.address }}">
+        </div>
+
+        <div class="form-row">
+            <label for="notes"><strong>Notes:</strong></label>
+            <textarea id="notes" name="notes">{{ customer.notes }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    </div>
+</form>
+
+
+
+{% endblock %}

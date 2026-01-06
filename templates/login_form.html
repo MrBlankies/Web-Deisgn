@@ -1,0 +1,98 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #90d4d1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            max-width: 550px;
+            max-height: 450px;    
+            height: 100%;
+            width: 100%;         
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h4 {
+            margin-left: 30px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 19px;
+            color: #000000af;
+        }
+        input {
+            width: 86%;
+            height: 8%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-size: 15px;
+        }
+        button {
+            width: 90%;
+            height: 60px;
+            padding: 10px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+        }
+        .flash-message {  
+            width: 86%;
+            margin: 0px auto;
+            color: #b00020; 
+            font-size: 0.95rem;
+        }
+        .flash-message.alert {
+            padding: 6px 8px;
+            border-radius: 4px;
+            background: #f8d7da;
+            color: #842029;
+        }
+
+    </style>
+    
+</head>
+<body>
+    {% block menu %} 
+
+    <form action="{{ url_for('login') }}" method="post">
+        <br><h2>Welcome Back</h2>
+        <h4>Username</h4>
+        <input name="username" class="username" type="text" placeholder="Enter your username" value="{{ username|default('') }}" required>
+        {% for message in get_flashed_messages() %}
+          <div class="flash-message alert">{{ message }}</div>
+        {% endfor %}
+        <h4>Password</h4>
+        <input name="password" class="password" type="password" placeholder="Enter your password" required><br><br><br>
+        <button class="btn btn-outline-success" type="submit">Sign in</button>
+    </form>
+
+    {% endblock %}
+    
+</body>
+</html>
+
